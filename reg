@@ -1,0 +1,22 @@
+#include <stdio.h>
+#include <string>
+#include <iostream>
+#include <regex>
+
+using namespace std;
+
+int main() {
+
+	string prop = //"By the symbol of arch the creator, I swear henceforth to be A faithful servant of his most puissant arch - angel To the furtherance of our LooL";
+	string s;
+
+	smatch w;
+	regex q("\\b([A-Za-z])[A-Za-z-]*\\1[.,<>?;:'{}\t]*\\s");
+	//regex q("\\b(\\w)\\w*\\1\\s");
+
+	std::regex_match(prop, w, q);
+	std::regex_match(prop.cbegin(), prop.cend(), w, q);
+		std::cout << w.size()<<endl;
+
+	
+}
