@@ -1,0 +1,97 @@
+#include <string>
+#include <iostream>
+#include <vector>
+#include <algorithm>
+#include <map>
+#include <random>
+#include <array>
+#include <chrono> 
+#include <regex>
+#include <math.h>
+#include <cmath>
+#include <cstdio>
+#include <Windows.h>
+
+
+#define PI 3.14159265359
+HANDLE hConsoleHandle = GetStdHandle(STD_OUTPUT_HANDLE);
+using namespace std;
+
+class GeneralSqaure {
+public:
+	GeneralSqaure() {
+	}
+	virtual double Square()=0;
+
+
+	~GeneralSqaure() {};
+	};
+
+class Triangle : public GeneralSqaure {
+public:
+
+	double aa;
+	double bb;
+	 double aangle;
+	 Triangle(const double a, const double b, const double angle) : aa(a), bb(b), aangle(angle) {};
+	double Square(){
+		//double Square(const double a, const double b, const double angle){
+		double res = sin(aangle*PI / 180);
+		double Square = (aa*bb*res) / 2;
+		//SetConsoleTextAttribute(hConsoleHandle, FOREGROUND_RED | BACKGROUND_BLUE);
+		//cout << "Trainge square is: " << Square << endl;
+		return Square;
+		}
+	~Triangle();
+	};
+
+class Circle :public GeneralSqaure {
+public:
+	double rr;
+	Circle(double R) :rr(R) {
+		}
+	double Square(){
+		double Square = PI*rr*rr;
+		//SetConsoleTextAttribute(hConsoleHandle, FOREGROUND_GREEN | BACKGROUND_BLUE);
+		//cout << "Circle square is: " << Square << endl;
+		return Square;
+		}
+		~Circle();
+	};
+
+class Squad :public GeneralSqaure {
+public:
+	double aa;
+	Squad(double a):aa(a) {}
+	double Square(){
+		double Square = aa*aa;
+		//SetConsoleTextAttribute(hConsoleHandle, FOREGROUND_BLUE | BACKGROUND_RED);
+		//cout <<"Squad square is: "<< Square << endl;
+		return Square;
+		}
+	
+	};
+
+	
+
+int main() {
+	
+		vector<GeneralSqaure*> figs{ 
+		new Triangle(4, 6, 90),
+		new Circle(5),
+		new Squad(12)};
+		double s = 0;
+		
+		for (std::vector<GeneralSqaure*>::iterator it = figs.begin(); it < figs.end(); ++it) {
+			s += (*it)->Square();
+
+			cout << (*it)->Square() << endl;
+			}
+		SetConsoleTextAttribute(hConsoleHandle, FOREGROUND_RED | BACKGROUND_INTENSITY);
+		cout <<"Summ is = "<< s << endl;
+
+		SetConsoleTextAttribute(hConsoleHandle, FOREGROUND_INTENSITY | BACKGROUND_INTENSITY);
+		system("pause");
+		return 0;
+
+	}
